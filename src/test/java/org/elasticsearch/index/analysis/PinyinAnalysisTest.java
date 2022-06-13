@@ -1,21 +1,21 @@
 /*
-* Licensed to ElasticSearch and Shay Banon under one
-* or more contributor license agreements.  See the NOTICE file
-* distributed with this work for additional information
-* regarding copyright ownership. ElasticSearch licenses this
-* file to you under the Apache License, Version 2.0 (the
-* "License"); you may not use this file except in compliance
-* with the License.  You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing,
-* software distributed under the License is distributed on an
-* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-* KIND, either express or implied.  See the License for the
-* specific language governing permissions and limitations
-* under the License.
-*/
+ * Licensed to ElasticSearch and Shay Banon under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. ElasticSearch licenses this
+ * file to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 
 package org.elasticsearch.index.analysis;
 
@@ -38,6 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ *
  */
 
 public class PinyinAnalysisTest {
@@ -46,264 +47,277 @@ public class PinyinAnalysisTest {
     @Test
     public void testTokenFilter() throws IOException {
         PinyinConfig config = new PinyinConfig();
+//        config.keepFirstLetter = true;
+//        config.keepNoneChinese = true;
+//        config.keepOriginal = false;
+//        config.keepFullPinyin = false;
+//        config.ignorePinyinOffset = false;
+//
+//
+//        StringReader sr = new StringReader("");
+//        Analyzer analyzer = new StandardAnalyzer();
+//        PinyinTokenFilter filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
+//        List<String> pinyin = new ArrayList<String>();
+//        filter.reset();
+//        System.out.println();
+//        while (filter.incrementToken()) {
+//            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
+//            pinyin.add(ta.toString());
+//            System.out.println(ta.toString());
+//        }
+//
+//        Assert.assertEquals(3, pinyin.size());
+//        Assert.assertEquals("l", pinyin.get(0));
+//        Assert.assertEquals("d", pinyin.get(1));
+//        Assert.assertEquals("h", pinyin.get(2));
+//
+//        sr = new StringReader("刘德华");
+//        analyzer = new KeywordAnalyzer();
+//        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
+//        pinyin.clear();
+//        filter.reset();
+//        System.out.println();
+//        while (filter.incrementToken()) {
+//            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
+//            pinyin.add(ta.toString());
+//            System.out.println(ta.toString());
+//        }
+//        Assert.assertEquals(1, pinyin.size());
+//        Assert.assertEquals("ldh", pinyin.get(0));
+//
+//
+//        config = new PinyinConfig();
+//        config.keepFirstLetter = false;
+//        config.keepNoneChinese = true;
+//        config.keepOriginal = false;
+//        config.keepFullPinyin = true;
+//        config.ignorePinyinOffset = false;
+//
+//
+//        sr = new StringReader("行情");
+//        analyzer = new StandardAnalyzer();
+//        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
+//        pinyin = new ArrayList<String>();
+//        filter.reset();
+//        System.out.println();
+//        while (filter.incrementToken()) {
+//            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
+//            pinyin.add(ta.toString());
+//            System.out.println(ta.toString());
+//        }
+////        Assert.assertEquals(3, pinyin.size());
+////        Assert.assertEquals("liu", pinyin.get(0));
+////        Assert.assertEquals("de", pinyin.get(1));
+////        Assert.assertEquals("hua", pinyin.get(2));
+//
+//
+//        config = new PinyinConfig();
+//        config.keepFirstLetter = true;
+//        config.keepNoneChinese = true;
+//        config.keepOriginal = true;
+//        config.keepFullPinyin = true;
+//        config.ignorePinyinOffset = false;
+//
+//
+//        sr = new StringReader("刘德华");
+//        analyzer = new StandardAnalyzer();
+//        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
+//        pinyin = new ArrayList<String>();
+//        filter.reset();
+//        System.out.println();
+//        while (filter.incrementToken()) {
+//            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
+//            pinyin.add(ta.toString());
+//            System.out.println(ta.toString());
+//        }
+//
+//        Assert.assertEquals(9, pinyin.size());
+//        Assert.assertEquals("liu", pinyin.get(0));
+//        Assert.assertEquals("刘", pinyin.get(1));
+//        Assert.assertEquals("l", pinyin.get(2));
+//        Assert.assertEquals("de", pinyin.get(3));
+//        Assert.assertEquals("德", pinyin.get(4));
+//        Assert.assertEquals("d", pinyin.get(5));
+//        Assert.assertEquals("hua", pinyin.get(6));
+//        Assert.assertEquals("华", pinyin.get(7));
+//        Assert.assertEquals("h", pinyin.get(8));
+//
+//
+//        config = new PinyinConfig();
+//        config.keepFirstLetter = true;
+//        config.keepNoneChinese = true;
+//        config.keepOriginal = true;
+//        config.keepFullPinyin = true;
+//        config.ignorePinyinOffset = false;
+//
+//
+//        sr = new StringReader("刘德华");
+//        analyzer = new KeywordAnalyzer();
+//        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
+//        pinyin = new ArrayList<String>();
+//        filter.reset();
+//        System.out.println();
+//        while (filter.incrementToken()) {
+//            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
+//            pinyin.add(ta.toString());
+//            System.out.println(ta.toString());
+//        }
+//
+//        Assert.assertEquals(5, pinyin.size());
+//        Assert.assertEquals("liu", pinyin.get(0));
+//        Assert.assertEquals("刘德华", pinyin.get(1));
+//        Assert.assertEquals("ldh", pinyin.get(2));
+//        Assert.assertEquals("de", pinyin.get(3));
+//        Assert.assertEquals("hua", pinyin.get(4));
+//
+//
+//
+//        config = new PinyinConfig();
+//        config.keepFirstLetter = true;
+//        config.keepNoneChinese = false;
+//        config.keepNoneChineseInFirstLetter = true;
+//        config.keepOriginal = false;
+//        config.keepFullPinyin = false;
+//        config.LimitFirstLetterLength = 5;
+//        config.lowercase = true;
+//        config.ignorePinyinOffset = false;
+//
+//
+//        sr = new StringReader("Go的数组是纯粹的值类型，传递一个[N]T的代价是N个T");
+//        analyzer = new KeywordAnalyzer();
+//        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
+//        pinyin = new ArrayList<String>();
+//        filter.reset();
+//        System.out.println();
+//        while (filter.incrementToken()) {
+//            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
+//            pinyin.add(ta.toString());
+//            System.out.println(ta.toString());
+//        }
+//
+//        Assert.assertEquals(1, pinyin.size());
+//        Assert.assertEquals("godsz", pinyin.get(0));
+//
+//
+//        config = new PinyinConfig();
+//        config.keepFirstLetter = true;
+//        config.keepSeparateFirstLetter = true;
+//        config.keepNoneChinese = true;
+//        config.keepNoneChineseInFirstLetter = false;
+//        config.keepOriginal = false;
+//        config.keepFullPinyin = true;
+//        config.LimitFirstLetterLength = 5;
+//        config.lowercase = true;
+//        config.ignorePinyinOffset = false;
+//
+//
+//        sr = new StringReader("liu德hua 名字");
+//        analyzer = new WhitespaceAnalyzer();
+//        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
+//        filter.reset();
+//        System.out.println();
+//        pinyin = getTokenFilterResult(filter);
+//
+//        Assert.assertEquals(9, pinyin.size());
+//        Assert.assertEquals("liu", pinyin.get(0));
+//        Assert.assertEquals("d", pinyin.get(1));
+//        Assert.assertEquals("de", pinyin.get(2));
+//        Assert.assertEquals("hua", pinyin.get(3));
+//        Assert.assertEquals("m", pinyin.get(4));
+//        Assert.assertEquals("ming", pinyin.get(5));
+//        Assert.assertEquals("z", pinyin.get(6));
+//        Assert.assertEquals("zi", pinyin.get(7));
+//        Assert.assertEquals("mz", pinyin.get(8));
+//
+//
+//        config = new PinyinConfig();
+//        config.keepFirstLetter = true;
+//        config.keepSeparateFirstLetter = true;
+//        config.keepNoneChinese = true;
+//        config.keepNoneChineseInFirstLetter = false;
+//        config.keepOriginal = false;
+//        config.keepFullPinyin = true;
+//        config.LimitFirstLetterLength = 5;
+//        config.lowercase = true;
+//        config.noneChinesePinyinTokenize=true;
+//        config.removeDuplicateTerm=false;
+//        config.ignorePinyinOffset = false;
+//
+//
+//        sr = new StringReader("liudehuaalibaba13zhuanghan134");
+//        analyzer = new WhitespaceAnalyzer();
+//        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
+//
+//        filter.reset();
+//        System.out.println();
+//
+//        pinyin= getTokenFilterResult(filter);
+//
+//        Assert.assertEquals(11, pinyin.size());
+//        Assert.assertEquals("liu", pinyin.get(0));
+//        Assert.assertEquals("de", pinyin.get(1));
+//        Assert.assertEquals("hua", pinyin.get(2));
+//        Assert.assertEquals("a", pinyin.get(3));
+//        Assert.assertEquals("li", pinyin.get(4));
+//        Assert.assertEquals("ba", pinyin.get(5));
+//        Assert.assertEquals("ba", pinyin.get(6));
+//        Assert.assertEquals("13", pinyin.get(7));
+//        Assert.assertEquals("zhuang", pinyin.get(8));
+//        Assert.assertEquals("han", pinyin.get(9));
+//        Assert.assertEquals("134", pinyin.get(10));
+
+
+        config = new PinyinConfig();
         config.keepFirstLetter = true;
-        config.keepNoneChinese = true;
-        config.keepOriginal = false;
         config.keepFullPinyin = false;
-        config.ignorePinyinOffset = false;
-
-
-        StringReader sr = new StringReader("刘德华");
-        Analyzer analyzer = new StandardAnalyzer();
-        PinyinTokenFilter filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
-        List<String> pinyin = new ArrayList<String>();
-        filter.reset();
-        System.out.println();
-        while (filter.incrementToken()) {
-            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
-            pinyin.add(ta.toString());
-            System.out.println(ta.toString());
-        }
-
-        Assert.assertEquals(3, pinyin.size());
-        Assert.assertEquals("l", pinyin.get(0));
-        Assert.assertEquals("d", pinyin.get(1));
-        Assert.assertEquals("h", pinyin.get(2));
-
-        sr = new StringReader("刘德华");
-        analyzer = new KeywordAnalyzer();
-        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
-        pinyin.clear();
-        filter.reset();
-        System.out.println();
-        while (filter.incrementToken()) {
-            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
-            pinyin.add(ta.toString());
-            System.out.println(ta.toString());
-        }
-        Assert.assertEquals(1, pinyin.size());
-        Assert.assertEquals("ldh", pinyin.get(0));
-
-
-        config = new PinyinConfig();
-        config.keepFirstLetter = false;
-        config.keepNoneChinese = true;
-        config.keepOriginal = false;
-        config.keepFullPinyin = true;
-        config.ignorePinyinOffset = false;
-
-
-        sr = new StringReader("刘德华");
-        analyzer = new StandardAnalyzer();
-        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
-        pinyin = new ArrayList<String>();
-        filter.reset();
-        System.out.println();
-        while (filter.incrementToken()) {
-            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
-            pinyin.add(ta.toString());
-            System.out.println(ta.toString());
-        }
-        Assert.assertEquals(3, pinyin.size());
-        Assert.assertEquals("liu", pinyin.get(0));
-        Assert.assertEquals("de", pinyin.get(1));
-        Assert.assertEquals("hua", pinyin.get(2));
-
-
-        config = new PinyinConfig();
-        config.keepFirstLetter = true;
-        config.keepNoneChinese = true;
-        config.keepOriginal = true;
-        config.keepFullPinyin = true;
-        config.ignorePinyinOffset = false;
-
-
-        sr = new StringReader("刘德华");
-        analyzer = new StandardAnalyzer();
-        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
-        pinyin = new ArrayList<String>();
-        filter.reset();
-        System.out.println();
-        while (filter.incrementToken()) {
-            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
-            pinyin.add(ta.toString());
-            System.out.println(ta.toString());
-        }
-
-        Assert.assertEquals(9, pinyin.size());
-        Assert.assertEquals("liu", pinyin.get(0));
-        Assert.assertEquals("刘", pinyin.get(1));
-        Assert.assertEquals("l", pinyin.get(2));
-        Assert.assertEquals("de", pinyin.get(3));
-        Assert.assertEquals("德", pinyin.get(4));
-        Assert.assertEquals("d", pinyin.get(5));
-        Assert.assertEquals("hua", pinyin.get(6));
-        Assert.assertEquals("华", pinyin.get(7));
-        Assert.assertEquals("h", pinyin.get(8));
-
-
-        config = new PinyinConfig();
-        config.keepFirstLetter = true;
-        config.keepNoneChinese = true;
-        config.keepOriginal = true;
-        config.keepFullPinyin = true;
-        config.ignorePinyinOffset = false;
-
-
-        sr = new StringReader("刘德华");
-        analyzer = new KeywordAnalyzer();
-        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
-        pinyin = new ArrayList<String>();
-        filter.reset();
-        System.out.println();
-        while (filter.incrementToken()) {
-            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
-            pinyin.add(ta.toString());
-            System.out.println(ta.toString());
-        }
-
-        Assert.assertEquals(5, pinyin.size());
-        Assert.assertEquals("liu", pinyin.get(0));
-        Assert.assertEquals("刘德华", pinyin.get(1));
-        Assert.assertEquals("ldh", pinyin.get(2));
-        Assert.assertEquals("de", pinyin.get(3));
-        Assert.assertEquals("hua", pinyin.get(4));
-
-
-
-        config = new PinyinConfig();
-        config.keepFirstLetter = true;
+        config.keepJoinedFullPinyin = true;
         config.keepNoneChinese = false;
+        config.keepNoneChineseTogether = true;
+        config.noneChinesePinyinTokenize = true;
         config.keepNoneChineseInFirstLetter = true;
         config.keepOriginal = false;
-        config.keepFullPinyin = false;
-        config.LimitFirstLetterLength = 5;
         config.lowercase = true;
+        config.trimWhitespace = true;
+        config.fixedPinyinOffset = true;
         config.ignorePinyinOffset = false;
 
-
-        sr = new StringReader("Go的数组是纯粹的值类型，传递一个[N]T的代价是N个T");
-        analyzer = new KeywordAnalyzer();
-        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
-        pinyin = new ArrayList<String>();
+        StringReader sr = new StringReader("行情");
+        WhitespaceAnalyzer analyzer = new WhitespaceAnalyzer();
+        MultiplePinyinTokenFilter filter = new MultiplePinyinTokenFilter(analyzer.tokenStream("f", sr), config);
         filter.reset();
-        System.out.println();
-        while (filter.incrementToken()) {
-            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
-            pinyin.add(ta.toString());
-            System.out.println(ta.toString());
-        }
-
-        Assert.assertEquals(1, pinyin.size());
-        Assert.assertEquals("godsz", pinyin.get(0));
-
-
-        config = new PinyinConfig();
-        config.keepFirstLetter = true;
-        config.keepSeparateFirstLetter = true;
-        config.keepNoneChinese = true;
-        config.keepNoneChineseInFirstLetter = false;
-        config.keepOriginal = false;
-        config.keepFullPinyin = true;
-        config.LimitFirstLetterLength = 5;
-        config.lowercase = true;
-        config.ignorePinyinOffset = false;
-
-
-        sr = new StringReader("liu德hua 名字");
-        analyzer = new WhitespaceAnalyzer();
-        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
-        filter.reset();
-        System.out.println();
-        pinyin = getTokenFilterResult(filter);
-
-        Assert.assertEquals(9, pinyin.size());
-        Assert.assertEquals("liu", pinyin.get(0));
-        Assert.assertEquals("d", pinyin.get(1));
-        Assert.assertEquals("de", pinyin.get(2));
-        Assert.assertEquals("hua", pinyin.get(3));
-        Assert.assertEquals("m", pinyin.get(4));
-        Assert.assertEquals("ming", pinyin.get(5));
-        Assert.assertEquals("z", pinyin.get(6));
-        Assert.assertEquals("zi", pinyin.get(7));
-        Assert.assertEquals("mz", pinyin.get(8));
-
-
-        config = new PinyinConfig();
-        config.keepFirstLetter = true;
-        config.keepSeparateFirstLetter = true;
-        config.keepNoneChinese = true;
-        config.keepNoneChineseInFirstLetter = false;
-        config.keepOriginal = false;
-        config.keepFullPinyin = true;
-        config.LimitFirstLetterLength = 5;
-        config.lowercase = true;
-        config.noneChinesePinyinTokenize=true;
-        config.removeDuplicateTerm=false;
-        config.ignorePinyinOffset = false;
-
-
-        sr = new StringReader("liudehuaalibaba13zhuanghan134");
-        analyzer = new WhitespaceAnalyzer();
-        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
-
-        filter.reset();
-        System.out.println();
-
-        pinyin= getTokenFilterResult(filter);
-
-        Assert.assertEquals(11, pinyin.size());
-        Assert.assertEquals("liu", pinyin.get(0));
-        Assert.assertEquals("de", pinyin.get(1));
-        Assert.assertEquals("hua", pinyin.get(2));
-        Assert.assertEquals("a", pinyin.get(3));
-        Assert.assertEquals("li", pinyin.get(4));
-        Assert.assertEquals("ba", pinyin.get(5));
-        Assert.assertEquals("ba", pinyin.get(6));
-        Assert.assertEquals("13", pinyin.get(7));
-        Assert.assertEquals("zhuang", pinyin.get(8));
-        Assert.assertEquals("han", pinyin.get(9));
-        Assert.assertEquals("134", pinyin.get(10));
-
-
-
-        config = new PinyinConfig();
-        config.keepFirstLetter=true;
-        config.keepFullPinyin=false;
-        config.keepJoinedFullPinyin =true;
-        config.keepNoneChinese=false;
-        config.keepNoneChineseTogether=true;
-        config.noneChinesePinyinTokenize=true;
-        config.keepNoneChineseInFirstLetter=true;
-        config.keepOriginal=false;
-        config.lowercase=true;
-        config.trimWhitespace=true;
-        config.fixedPinyinOffset =true;
-        config.ignorePinyinOffset = false;
-
-        sr = new StringReader("刘德华");
-        analyzer = new WhitespaceAnalyzer();
-        filter = new PinyinTokenFilter(analyzer.tokenStream("f", sr), config);
-        filter.reset();
-        pinyin= getTokenFilterResult(filter);
-        Assert.assertEquals("liudehua", pinyin.get(0));
-        Assert.assertEquals("ldh", pinyin.get(1));
-
+        List<String> tokenFilterResult = getTokenFilterResult(filter);
+        System.out.println(tokenFilterResult);
 
     }
 
-    private List<String> getTokenFilterResult(PinyinTokenFilter filter)  throws IOException {
+    private List<String> getTokenFilterResult(PinyinTokenFilter filter) throws IOException {
         List<String> pinyin = new ArrayList<String>();
-        int pos=0;
+        int pos = 0;
         while (filter.incrementToken()) {
             CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
             OffsetAttribute offset = filter.getAttribute(OffsetAttribute.class);
             PositionIncrementAttribute position = filter.getAttribute(PositionIncrementAttribute.class);
-            pos=pos+position.getPositionIncrement();
+            pos = pos + position.getPositionIncrement();
             pinyin.add(ta.toString());
-            Assert.assertTrue("startOffset must be non-negative",offset.startOffset()>=0);
-            Assert.assertTrue("endOffset must be >= startOffset",offset.startOffset()>=0);
-            System.out.println(ta.toString()+","+offset.startOffset()+","+offset.endOffset()+","+pos);
+            Assert.assertTrue("startOffset must be non-negative", offset.startOffset() >= 0);
+            Assert.assertTrue("endOffset must be >= startOffset", offset.startOffset() >= 0);
+            System.out.println(ta.toString() + "," + offset.startOffset() + "," + offset.endOffset() + "," + pos);
+        }
+        return pinyin;
+    }
+
+    private List<String> getTokenFilterResult(MultiplePinyinTokenFilter filter) throws IOException {
+        List<String> pinyin = new ArrayList<String>();
+        int pos = 0;
+        while (filter.incrementToken()) {
+            CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
+            OffsetAttribute offset = filter.getAttribute(OffsetAttribute.class);
+            PositionIncrementAttribute position = filter.getAttribute(PositionIncrementAttribute.class);
+            pos = pos + position.getPositionIncrement();
+            pinyin.add(ta.toString());
+            Assert.assertTrue("startOffset must be non-negative", offset.startOffset() >= 0);
+            Assert.assertTrue("endOffset must be >= startOffset", offset.startOffset() >= 0);
+            System.out.println(ta.toString() + "," + offset.startOffset() + "," + offset.endOffset() + "," + pos);
         }
         return pinyin;
     }
@@ -319,8 +333,8 @@ public class PinyinAnalysisTest {
                 };
 
         PinyinConfig config = new PinyinConfig();
-        config.noneChinesePinyinTokenize=false;
-        config.keepOriginal=true;
+        config.noneChinesePinyinTokenize = false;
+        config.keepOriginal = true;
         config.ignorePinyinOffset = false;
 
         HashMap<String, ArrayList<TermItem>> result = getStringArrayListHashMap(s, config);
@@ -453,15 +467,15 @@ public class PinyinAnalysisTest {
 
         s1 = new String[]{"lu金 s刘德华 张学友 郭富城 黎明 四大lao天王liudehua"};
         config = new PinyinConfig();
-        config.keepFirstLetter=true;
-        config.keepFullPinyin=false;
-        config.keepNoneChinese=false;
-        config.keepNoneChineseTogether=true;
-        config.noneChinesePinyinTokenize=true;
-        config.keepNoneChineseInFirstLetter=true;
-        config.keepOriginal=false;
-        config.lowercase=true;
-        config.trimWhitespace=true;
+        config.keepFirstLetter = true;
+        config.keepFullPinyin = false;
+        config.keepNoneChinese = false;
+        config.keepNoneChineseTogether = true;
+        config.noneChinesePinyinTokenize = true;
+        config.keepNoneChineseInFirstLetter = true;
+        config.keepOriginal = false;
+        config.lowercase = true;
+        config.trimWhitespace = true;
         config.ignorePinyinOffset = false;
 
 
@@ -473,16 +487,16 @@ public class PinyinAnalysisTest {
 
         s1 = new String[]{"刘德华"};
         config = new PinyinConfig();
-        config.keepFirstLetter=true;
-        config.keepFullPinyin=false;
-        config.keepJoinedFullPinyin =true;
-        config.keepNoneChinese=false;
-        config.keepNoneChineseTogether=true;
-        config.noneChinesePinyinTokenize=true;
-        config.keepNoneChineseInFirstLetter=true;
-        config.keepOriginal=false;
-        config.lowercase=true;
-        config.trimWhitespace=true;
+        config.keepFirstLetter = true;
+        config.keepFullPinyin = false;
+        config.keepJoinedFullPinyin = true;
+        config.keepNoneChinese = false;
+        config.keepNoneChineseTogether = true;
+        config.noneChinesePinyinTokenize = true;
+        config.keepNoneChineseInFirstLetter = true;
+        config.keepOriginal = false;
+        config.lowercase = true;
+        config.trimWhitespace = true;
         config.ignorePinyinOffset = false;
 
 
@@ -494,16 +508,16 @@ public class PinyinAnalysisTest {
 
         s1 = new String[]{"刘德华"};
         config = new PinyinConfig();
-        config.keepFirstLetter=false;
-        config.keepFullPinyin=false;
-        config.keepJoinedFullPinyin =true;
-        config.keepNoneChinese=false;
-        config.keepNoneChineseTogether=true;
-        config.noneChinesePinyinTokenize=true;
-        config.keepNoneChineseInFirstLetter=true;
-        config.keepOriginal=false;
-        config.lowercase=true;
-        config.trimWhitespace=true;
+        config.keepFirstLetter = false;
+        config.keepFullPinyin = false;
+        config.keepJoinedFullPinyin = true;
+        config.keepNoneChinese = false;
+        config.keepNoneChineseTogether = true;
+        config.noneChinesePinyinTokenize = true;
+        config.keepNoneChineseInFirstLetter = true;
+        config.keepOriginal = false;
+        config.lowercase = true;
+        config.trimWhitespace = true;
         config.ignorePinyinOffset = false;
 
 
@@ -515,16 +529,16 @@ public class PinyinAnalysisTest {
 
         s1 = new String[]{"ceshi"};
         config = new PinyinConfig();
-        config.keepFirstLetter=false;
-        config.keepSeparateFirstLetter=false;
-        config.keepFullPinyin=false;
-        config.keepJoinedFullPinyin =true;
-        config.keepNoneChinese=true;
-        config.keepNoneChineseTogether=true;
-        config.keepOriginal=true;
-        config.LimitFirstLetterLength=16;
-        config.noneChinesePinyinTokenize=true;
-        config.lowercase=true;
+        config.keepFirstLetter = false;
+        config.keepSeparateFirstLetter = false;
+        config.keepFullPinyin = false;
+        config.keepJoinedFullPinyin = true;
+        config.keepNoneChinese = true;
+        config.keepNoneChineseTogether = true;
+        config.keepOriginal = true;
+        config.LimitFirstLetterLength = 16;
+        config.noneChinesePinyinTokenize = true;
+        config.lowercase = true;
         config.ignorePinyinOffset = false;
 
 
@@ -534,8 +548,6 @@ public class PinyinAnalysisTest {
         Assert.assertEquals("ce", re.get(0).term);
         Assert.assertEquals("shi", re.get(2).term);
         Assert.assertEquals("ceshi", re.get(1).term);
-
-
 
 
     }
@@ -577,16 +589,16 @@ public class PinyinAnalysisTest {
     public void TestOnlyLetters() throws IOException {
         String[] s1 = new String[]{"ldh"};
         PinyinConfig config = new PinyinConfig();
-        config.keepFirstLetter=false;
-        config.keepSeparateFirstLetter=false;
-        config.keepFullPinyin=true;
-        config.keepJoinedFullPinyin =false;
-        config.keepNoneChinese=true;
-        config.keepNoneChineseTogether=true;
-        config.keepOriginal=false;
-        config.LimitFirstLetterLength=16;
-        config.noneChinesePinyinTokenize=true;
-        config.lowercase=true;
+        config.keepFirstLetter = false;
+        config.keepSeparateFirstLetter = false;
+        config.keepFullPinyin = true;
+        config.keepJoinedFullPinyin = false;
+        config.keepNoneChinese = true;
+        config.keepNoneChineseTogether = true;
+        config.keepOriginal = false;
+        config.LimitFirstLetterLength = 16;
+        config.noneChinesePinyinTokenize = true;
+        config.lowercase = true;
         config.ignorePinyinOffset = false;
 
 
@@ -607,17 +619,17 @@ public class PinyinAnalysisTest {
 
 
         s1 = new String[]{"liuldhdehua"};
-         config = new PinyinConfig();
-        config.keepFirstLetter=false;
-        config.keepSeparateFirstLetter=false;
-        config.keepFullPinyin=true;
-        config.keepJoinedFullPinyin =false;
-        config.keepNoneChinese=true;
-        config.keepNoneChineseTogether=true;
-        config.keepOriginal=false;
-        config.LimitFirstLetterLength=16;
-        config.noneChinesePinyinTokenize=true;
-        config.lowercase=true;
+        config = new PinyinConfig();
+        config.keepFirstLetter = false;
+        config.keepSeparateFirstLetter = false;
+        config.keepFullPinyin = true;
+        config.keepJoinedFullPinyin = false;
+        config.keepNoneChinese = true;
+        config.keepNoneChineseTogether = true;
+        config.keepOriginal = false;
+        config.LimitFirstLetterLength = 16;
+        config.noneChinesePinyinTokenize = true;
+        config.lowercase = true;
         config.ignorePinyinOffset = false;
 
 
@@ -631,18 +643,18 @@ public class PinyinAnalysisTest {
         Assert.assertEquals("de", re.get(4).term);
         Assert.assertEquals("hua", re.get(5).term);
 
-       s1 = new String[]{"liuldh"};
-         config = new PinyinConfig();
-        config.keepFirstLetter=false;
-        config.keepSeparateFirstLetter=false;
-        config.keepFullPinyin=true;
-        config.keepJoinedFullPinyin =false;
-        config.keepNoneChinese=true;
-        config.keepNoneChineseTogether=true;
-        config.keepOriginal=false;
-        config.LimitFirstLetterLength=16;
-        config.noneChinesePinyinTokenize=true;
-        config.lowercase=true;
+        s1 = new String[]{"liuldh"};
+        config = new PinyinConfig();
+        config.keepFirstLetter = false;
+        config.keepSeparateFirstLetter = false;
+        config.keepFullPinyin = true;
+        config.keepJoinedFullPinyin = false;
+        config.keepNoneChinese = true;
+        config.keepNoneChineseTogether = true;
+        config.keepOriginal = false;
+        config.LimitFirstLetterLength = 16;
+        config.noneChinesePinyinTokenize = true;
+        config.lowercase = true;
         config.ignorePinyinOffset = false;
 
 
@@ -655,17 +667,17 @@ public class PinyinAnalysisTest {
         Assert.assertEquals("h", re.get(3).term);
 
         s1 = new String[]{"ldhdehua"};
-         config = new PinyinConfig();
-        config.keepFirstLetter=false;
-        config.keepSeparateFirstLetter=false;
-        config.keepFullPinyin=true;
-        config.keepJoinedFullPinyin =false;
-        config.keepNoneChinese=true;
-        config.keepNoneChineseTogether=true;
-        config.keepOriginal=false;
-        config.LimitFirstLetterLength=16;
-        config.noneChinesePinyinTokenize=true;
-        config.lowercase=true;
+        config = new PinyinConfig();
+        config.keepFirstLetter = false;
+        config.keepSeparateFirstLetter = false;
+        config.keepFullPinyin = true;
+        config.keepJoinedFullPinyin = false;
+        config.keepNoneChinese = true;
+        config.keepNoneChineseTogether = true;
+        config.keepOriginal = false;
+        config.LimitFirstLetterLength = 16;
+        config.noneChinesePinyinTokenize = true;
+        config.lowercase = true;
         config.ignorePinyinOffset = false;
 
 
@@ -679,17 +691,17 @@ public class PinyinAnalysisTest {
         Assert.assertEquals("hua", re.get(4).term);
 
         s1 = new String[]{"ldh123dehua"};
-         config = new PinyinConfig();
-        config.keepFirstLetter=false;
-        config.keepSeparateFirstLetter=false;
-        config.keepFullPinyin=true;
-        config.keepJoinedFullPinyin =false;
-        config.keepNoneChinese=true;
-        config.keepNoneChineseTogether=true;
-        config.keepOriginal=false;
-        config.LimitFirstLetterLength=16;
-        config.noneChinesePinyinTokenize=true;
-        config.lowercase=true;
+        config = new PinyinConfig();
+        config.keepFirstLetter = false;
+        config.keepSeparateFirstLetter = false;
+        config.keepFullPinyin = true;
+        config.keepJoinedFullPinyin = false;
+        config.keepNoneChinese = true;
+        config.keepNoneChineseTogether = true;
+        config.keepOriginal = false;
+        config.LimitFirstLetterLength = 16;
+        config.noneChinesePinyinTokenize = true;
+        config.lowercase = true;
         config.ignorePinyinOffset = false;
 
 
@@ -754,12 +766,12 @@ public class PinyinAnalysisTest {
 
         config = new PinyinConfig();
         config.keepFirstLetter = true;
-        config.keepNoneChinese=true;
+        config.keepNoneChinese = true;
         config.keepNoneChineseInFirstLetter = true;
         config.keepNoneChineseTogether = true;
         config.keepOriginal = false;
         config.keepFullPinyin = false;
-        config.noneChinesePinyinTokenize=false;
+        config.noneChinesePinyinTokenize = false;
         config.ignorePinyinOffset = false;
 
         result = getStringArrayListHashMap(s, config);
@@ -774,7 +786,7 @@ public class PinyinAnalysisTest {
     }
 
     @Test
-    public void TestFullJoinedPinyin() throws IOException{
+    public void TestFullJoinedPinyin() throws IOException {
         String[] s =
                 {"DJ音乐家"
                 };
@@ -783,11 +795,11 @@ public class PinyinAnalysisTest {
         config.keepNoneChineseInFirstLetter = false;
         config.keepOriginal = false;
         config.keepFullPinyin = false;
-        config.noneChinesePinyinTokenize=false;
-        config.keepNoneChinese=true;
-        config.keepJoinedFullPinyin=true;
+        config.noneChinesePinyinTokenize = false;
+        config.keepNoneChinese = true;
+        config.keepJoinedFullPinyin = true;
         config.keepNoneChineseTogether = true;
-        config.keepNoneChineseInJoinedFullPinyin=true;
+        config.keepNoneChineseInJoinedFullPinyin = true;
         config.ignorePinyinOffset = false;
 
         HashMap<String, ArrayList<TermItem>> result = getStringArrayListHashMap(s, config);
@@ -909,10 +921,9 @@ public class PinyinAnalysisTest {
         config.keepFullPinyin = true;
         config.keepNoneChineseTogether = true;
         config.removeDuplicateTerm = true;
-        config.fixedPinyinOffset=false;
-        config.keepJoinedFullPinyin=false;
+        config.fixedPinyinOffset = false;
+        config.keepJoinedFullPinyin = false;
         config.ignorePinyinOffset = false;
-
 
 
         HashMap<String, ArrayList<TermItem>> result = getStringArrayListHashMap(s, config);
@@ -987,7 +998,7 @@ public class PinyinAnalysisTest {
         config.keepOriginal = false;
         config.keepFullPinyin = true;
         config.keepNoneChineseTogether = true;
-        config.fixedPinyinOffset=false;
+        config.fixedPinyinOffset = false;
         config.ignorePinyinOffset = false;
 
         HashMap<String, ArrayList<TermItem>> result = getStringArrayListHashMap(s, config);
@@ -1062,7 +1073,7 @@ public class PinyinAnalysisTest {
         config.keepOriginal = false;
         config.keepFullPinyin = true;
         config.keepNoneChineseTogether = true;
-        config.fixedPinyinOffset=true;
+        config.fixedPinyinOffset = true;
         config.ignorePinyinOffset = false;
 
 
@@ -1143,15 +1154,15 @@ public class PinyinAnalysisTest {
 
             boolean hasnext = tokenizer.incrementToken();
 
-            int pos=0;
+            int pos = 0;
             ArrayList<TermItem> re = new ArrayList<>();
             while (hasnext) {
                 CharTermAttribute ta = tokenizer.getAttribute(CharTermAttribute.class);
                 PositionIncrementAttribute position = tokenizer.getAttribute(PositionIncrementAttribute.class);
                 OffsetAttribute offset = tokenizer.getAttribute(OffsetAttribute.class);
-                pos=pos+position.getPositionIncrement();
-                System.out.printf("%s: %d -> %d ,%d\n", ta.toString(), offset.startOffset(), offset.endOffset(),pos);
-                re.add(new TermItem(ta.toString(),offset.startOffset(),offset.endOffset(),pos));
+                pos = pos + position.getPositionIncrement();
+                System.out.printf("%s: %d -> %d ,%d\n", ta.toString(), offset.startOffset(), offset.endOffset(), pos);
+                re.add(new TermItem(ta.toString(), offset.startOffset(), offset.endOffset(), pos));
                 hasnext = tokenizer.incrementToken();
             }
             result.put(value, re);
@@ -1173,8 +1184,8 @@ public class PinyinAnalysisTest {
     }
 
     @Test
-    public void TestPinyinTokenize(){
-        String str ="liudehuaalibaba13zhuanghan134";
+    public void TestPinyinTokenize() {
+        String str = "liudehuaalibaba13zhuanghan134";
         List<String> result = PinyinAlphabetTokenizer.walk(str);
         for (int i = 0; i < result.size(); i++) {
             System.out.println(result.get(i));
@@ -1191,7 +1202,7 @@ public class PinyinAnalysisTest {
         Assert.assertEquals("han", result.get(9));
         Assert.assertEquals("134", result.get(10));
 
-        str ="a123";
+        str = "a123";
         result = PinyinAlphabetTokenizer.walk(str);
         for (int i = 0; i < result.size(); i++) {
             System.out.println(result.get(i));
@@ -1199,7 +1210,7 @@ public class PinyinAnalysisTest {
         Assert.assertEquals("a", result.get(0));
         Assert.assertEquals("123", result.get(1));
 
-        str ="liudehua";
+        str = "liudehua";
         result = PinyinAlphabetTokenizer.walk(str);
         for (int i = 0; i < result.size(); i++) {
             System.out.println(result.get(i));
@@ -1209,10 +1220,10 @@ public class PinyinAnalysisTest {
         Assert.assertEquals("hua", result.get(2));
 
 
-        str ="ceshi";
+        str = "ceshi";
         result = PinyinAlphabetTokenizer.walk(str);
         for (int i = 0; i < result.size(); i++) {
-            System.out.println(i+": "+result.get(i));
+            System.out.println(i + ": " + result.get(i));
         }
         Assert.assertEquals("ce", result.get(0));
         Assert.assertEquals("shi", result.get(1));
@@ -1220,7 +1231,7 @@ public class PinyinAnalysisTest {
 
     @Test
     public void TestPinyinPosition1() throws IOException {
-        String[] s ={ "刘德华"};
+        String[] s = {"刘德华"};
 
         PinyinConfig config = new PinyinConfig();
         config.keepFirstLetter = true;
@@ -1272,7 +1283,7 @@ public class PinyinAnalysisTest {
 
     @Test
     public void TestPinyinPosition2() throws IOException {
-        String[] s ={ "l德华"};
+        String[] s = {"l德华"};
 
         PinyinConfig config = new PinyinConfig();
         config.keepFirstLetter = true;
@@ -1319,12 +1330,11 @@ public class PinyinAnalysisTest {
         Assert.assertEquals(3, re.get(6).position);
 
 
-
     }
 
     @Test
     public void TestPinyinPositionWithNonChinese() throws IOException {
-        String[] s ={
+        String[] s = {
                 "l德华",
                 "liu德华"
         };
@@ -1334,15 +1344,15 @@ public class PinyinAnalysisTest {
         config.keepSeparateFirstLetter = true;
 
         config.keepNoneChinese = true;
-        config.keepNoneChineseTogether=false;
+        config.keepNoneChineseTogether = false;
 
-        config.keepNoneChineseInFirstLetter=true;
+        config.keepNoneChineseInFirstLetter = true;
         config.keepOriginal = false;
         config.keepFullPinyin = false;
         config.ignorePinyinOffset = false;
 
 
-        HashMap<String, ArrayList<TermItem>>  result = getStringArrayListHashMap(s, config);
+        HashMap<String, ArrayList<TermItem>> result = getStringArrayListHashMap(s, config);
 
         ArrayList<TermItem> re = result.get("l德华");
         Assert.assertEquals("l", re.get(0).term);
@@ -1366,9 +1376,9 @@ public class PinyinAnalysisTest {
         config.keepSeparateFirstLetter = true;
 
         config.keepNoneChinese = true;
-        config.keepNoneChineseTogether=true;
+        config.keepNoneChineseTogether = true;
 
-        config.keepNoneChineseInFirstLetter=true;
+        config.keepNoneChineseInFirstLetter = true;
         config.keepOriginal = false;
         config.keepFullPinyin = false;
         config.ignorePinyinOffset = false;
@@ -1413,7 +1423,7 @@ public class PinyinAnalysisTest {
 
     @Test
     public void TestPinyinPosition3() throws IOException {
-        String[] s ={ "liude华","liudehua","ldhua","刘de华","刘dehua","DJ音乐家"};
+        String[] s = {"liude华", "liudehua", "ldhua", "刘de华", "刘dehua", "DJ音乐家"};
 
         PinyinConfig config = new PinyinConfig();
         config.keepFirstLetter = true;
@@ -1463,7 +1473,7 @@ public class PinyinAnalysisTest {
 
     @Test
     public void TestPinyinPosition4() throws IOException {
-        String[] s ={ "medcl"};
+        String[] s = {"medcl"};
 
         PinyinConfig config = new PinyinConfig();
         config.keepFirstLetter = true;
@@ -1475,7 +1485,7 @@ public class PinyinAnalysisTest {
         config.ignorePinyinOffset = false;
 
 
-        HashMap<String, ArrayList<TermItem>> result= getStringArrayListHashMap(s, config);
+        HashMap<String, ArrayList<TermItem>> result = getStringArrayListHashMap(s, config);
 
         ArrayList<TermItem> re = result.get("medcl");
         Assert.assertEquals("me", re.get(0).term);
@@ -1511,7 +1521,6 @@ public class PinyinAnalysisTest {
         Assert.assertEquals(0, re.get(1).startOffset);
         Assert.assertEquals(5, re.get(1).endOffset);
         Assert.assertEquals(1, re.get(1).position);
-
 
 
         Assert.assertEquals("e", re.get(2).term);
