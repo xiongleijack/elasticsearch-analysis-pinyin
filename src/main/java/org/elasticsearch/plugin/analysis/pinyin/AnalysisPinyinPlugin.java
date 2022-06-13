@@ -18,6 +18,7 @@ public class AnalysisPinyinPlugin extends Plugin implements AnalysisPlugin {
     public Map<String, AnalysisModule.AnalysisProvider<TokenizerFactory>> getTokenizers() {
         Map<String, AnalysisModule.AnalysisProvider<TokenizerFactory>> extra = new HashMap<>();
         extra.put("pinyin", PinyinTokenizerFactory::new);
+        extra.put("multiple_pinyin", MultiplePinyinTokenizerFactory::new);
         extra.put("pinyin_first_letter", PinyinAbbreviationsTokenizerFactory::new);
         return extra;
     }
@@ -25,6 +26,7 @@ public class AnalysisPinyinPlugin extends Plugin implements AnalysisPlugin {
     @Override
     public Map<String, AnalysisModule.AnalysisProvider<org.elasticsearch.index.analysis.TokenFilterFactory>> getTokenFilters() {
         Map<String, AnalysisModule.AnalysisProvider<org.elasticsearch.index.analysis.TokenFilterFactory>> extra = new HashMap<>();
+        extra.put("multiple_pinyin", MultiplePinyinTokenFilterFactory::new);
         extra.put("pinyin", PinyinTokenFilterFactory::new);
         return extra;
     }
