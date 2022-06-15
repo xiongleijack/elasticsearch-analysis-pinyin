@@ -1,7 +1,7 @@
 Pinyin Analysis for Elasticsearch
 ==================================
 
-This Pinyin Analysis plugin is used to do conversion between Chinese characters and Pinyin, integrates NLP tools (https://github.com/NLPchina/nlp-lang).
+This Pinyin Analysis plugin is used to do conversion between Chinese characters and Pinyin, integrates NLP tools (https://github.com/xiongleijack/nlp-lang).
 
     --------------------------------------------------
     | Pinyin Analysis Plugin        | Elasticsearch  |
